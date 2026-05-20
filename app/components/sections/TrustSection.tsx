@@ -73,19 +73,21 @@ export default function TrustSection() {
             {STATS.map((stat, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div
-                  className="bg-black flex flex-col items-center text-center md:items-start md:text-left gap-4 md:gap-6 p-8 md:p-10"
-                  style={{ minHeight: 'clamp(180px, 20vw, 220px)' }}
+                  className="bg-black flex flex-col items-center justify-center text-center p-8 md:p-10"
+                  style={{ minHeight: '240px' }}
                 >
-                  <div>{stat.icon}</div>
-                  <div>
-                    <div
-                      className="text-white font-light mb-1 md:mb-2"
-                      style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontFamily: "'Georgia', serif" }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div className="text-white/55 text-sm">
-                      {stat.label}
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 mt-1">{stat.icon}</div>
+                    <div>
+                      <div
+                        className="text-white font-light mb-2"
+                        style={{ fontSize: 'clamp(24px, 2.5vw, 32px)', fontFamily: "'Georgia', serif" }}
+                      >
+                        {stat.value}
+                      </div>
+                      <div className="text-white/55 text-sm leading-relaxed">
+                        {stat.label}
+                      </div>
                     </div>
                   </div>
                 </div>
