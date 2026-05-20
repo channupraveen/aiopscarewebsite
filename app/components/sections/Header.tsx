@@ -1,0 +1,225 @@
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const NAV_LINKS = [
+  {
+    label: "PLATFORM",
+    displayLabel: "Platform",
+    href: "#platform",
+    submenu: [
+      { label: "Overview", href: "#platform" },
+      { label: "The AiOpsCare Engine", href: "#agents" },
+      { label: "Use Cases", href: "#workflows" },
+    ],
+  },
+  {
+    label: "SECURITY",
+    displayLabel: "Security",
+    href: "#compliance",
+    submenu: [
+      { label: "Overview", href: "#compliance" },
+      { label: "Compliance & Certifications", href: "#compliance" },
+      { label: "Data Protection", href: "#compliance" },
+    ],
+  },
+  {
+    label: "CAREERS",
+    displayLabel: "Careers",
+    href: "#",
+    submenu: [
+      { label: "Open Positions", href: "#" },
+      { label: "Life at AiOpsCare", href: "#" },
+      { label: "Engineering Team", href: "#" },
+    ],
+  },
+  {
+    label: "ABOUT",
+    displayLabel: "About",
+    href: "#about",
+    submenu: [
+      { label: "Our Mission", href: "#about" },
+      { label: "Leadership", href: "#about" },
+      { label: "Investors & Partners", href: "#about" },
+    ],
+  },
+  {
+    label: "BLOG",
+    displayLabel: "Blog",
+    href: "#",
+    submenu: [
+      { label: "Latest Articles", href: "#" },
+      { label: "Case Studies", href: "#" },
+      { label: "Product Updates", href: "#" },
+    ],
+  },
+];
+
+export default function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  const activeLink = NAV_LINKS.find((l) => l.label === hoveredItem);
+
+  return (
+    <>
+      <motion.header
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        onMouseLeave={() => setHoveredItem(null)}
+        className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10"
+      >
+        {/* Top bar — full width edge-to-edge like Luminai */}
+        <div className="flex items-center justify-between gap-6" style={{ minHeight: '85px', paddingLeft: '48px', paddingRight: '48px' }}>
+          {/* Logo */}
+          <a href="/" className="flex items-center gap-2.5 z-10 shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue to-cyan flex items-center justify-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span className="text-lg font-semibold tracking-tight text-white">
+              AiOps<span className="text-blue">Care</span>
+            </span>
+          </a>
+
+          {/* Center Nav */}
+          <nav className="hidden md:flex items-center gap-9 flex-1 justify-center">
+            {NAV_LINKS.map((link) => (
+              <div
+                key={link.label}
+                onMouseEnter={() => setHoveredItem(link.label)}
+                className="relative py-2"
+              >
+                <a
+                  href={link.href}
+                  className={`text-[13px] tracking-[0.1em] font-medium transition-colors duration-300 ${
+                    hoveredItem === link.label ? "text-white" : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </a>
+                {hoveredItem === link.label && (
+                  <motion.div
+                    layoutId="navUnderline"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-white"
+                  />
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* Right CTA */}
+          <a
+            href="#demo"
+            className="hidden md:inline-flex items-center gap-2.5 text-[13px] text-white tracking-[0.12em] font-medium border-2 border-white/40 hover:border-white/70 hover:bg-white/5 px-7 py-4 transition-all duration-300 shrink-0"
+          >
+            REQUEST A DEMO
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-10"
+          >
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-1" : ""}`} />
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-1" : ""}`} />
+          </button>
+        </div>
+
+        {/* MEGA MENU DROPDOWN */}
+        <AnimatePresence>
+          {activeLink && activeLink.submenu && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden border-t border-white/10 bg-black"
+            >
+              <div className="max-w-[1600px] mx-auto grid grid-cols-[1fr_2fr] gap-10" style={{ paddingTop: '40px', paddingBottom: '40px', paddingLeft: '48px', paddingRight: '48px' }}>
+                <div>
+                  <motion.h3
+                    key={activeLink.label}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-white font-light tracking-tight"
+                    style={{ fontFamily: "'Georgia', 'Times New Roman', serif", fontSize: '22px' }}
+                  >
+                    {activeLink.displayLabel}
+                  </motion.h3>
+                </div>
+
+                <div className="flex flex-col">
+                  {activeLink.submenu.map((sub, i) => (
+                    <motion.a
+                      key={`${activeLink.label}-${sub.label}`}
+                      href={sub.href}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 + i * 0.05 }}
+                      onClick={() => setHoveredItem(null)}
+                      className="group flex items-center justify-between border-b border-white/[0.08] last:border-b-0 text-white hover:text-white transition-colors"
+                      style={{ paddingTop: '14px', paddingBottom: '14px' }}
+                    >
+                      <span
+                        className="font-light tracking-tight"
+                        style={{ fontFamily: "'Georgia', 'Times New Roman', serif", fontSize: '17px' }}
+                      >
+                        {sub.label}
+                      </span>
+                      <svg
+                        width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                        className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300"
+                      >
+                        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                      </svg>
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      {/* Mobile Nav */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden overflow-y-auto"
+          >
+            <nav className="flex flex-col gap-6 pb-10">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-2xl font-light text-white/80 hover:text-white transition-colors tracking-wide"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="pt-6 border-t border-white/10">
+                <a href="#demo" onClick={() => setMobileOpen(false)} className="inline-flex items-center gap-2 text-sm text-white tracking-[0.12em] border border-white/30 px-6 py-3">
+                  REQUEST A DEMO
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
