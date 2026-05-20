@@ -115,10 +115,11 @@ export default function Header() {
           {/* Right CTA */}
           <a
             href="#demo"
-            className="hidden md:inline-flex items-center gap-2.5 text-[13px] text-white tracking-[0.12em] font-medium border-2 border-white/40 hover:border-white/70 hover:bg-white/5 px-7 py-4 transition-all duration-300 shrink-0"
+            className="hidden md:inline-flex items-center gap-3 text-[13px] text-white tracking-[0.15em] font-medium border border-white/40 hover:border-white/70 hover:bg-white/5 transition-all duration-300 shrink-0"
+            style={{ padding: '10px 20px' }}
           >
             REQUEST A DEMO
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <span className="text-[15px] font-light ml-1">&gt;</span>
           </a>
 
           {/* Mobile Hamburger */}
