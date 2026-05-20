@@ -1,39 +1,20 @@
 "use client";
 import { motion } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, []);
 
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Full-bleed video background */}
       <div className="absolute inset-0">
-        {/* Fallback image while video loads */}
-        <div
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1564473185935-58113cba1e80?q=80&w=2232&auto=format&fit=crop')`,
-          }}
-        />
-
-        {/* Video */}
+        {/* Video background */}
         <video
-          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/videos/vedio.mp4" type="video/mp4" />
         </video>
