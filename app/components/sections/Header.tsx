@@ -211,6 +211,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 bg-black flex flex-col md:hidden"
+            style={{ padding: '0 28px' }}
           >
             {/* Mobile nav header */}
             <div className="flex items-center justify-between" style={{ minHeight: '65px', paddingLeft: '20px', paddingRight: '20px' }}>
@@ -238,7 +239,7 @@ export default function Header() {
             </div>
 
             {/* Spacer + Links */}
-            <nav className="flex-1 flex flex-col justify-center px-6 gap-1">
+            <nav className="flex-1 flex flex-col justify-center px-0 gap-1">
               <a
                 href="/"
                 onClick={() => setMobileOpen(false)}
@@ -296,7 +297,7 @@ export default function Header() {
             </nav>
 
             {/* Bottom CTA — blue full-width like Luminai */}
-            <div className="px-6 pb-8">
+            <div className="px-0" style={{ marginBottom: '40px' }}>
               <a
                 href="#demo"
                 onClick={() => setMobileOpen(false)}
