@@ -1,20 +1,47 @@
 "use client";
 import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Full-bleed background */}
+      {/* Full-bleed video background */}
       <div className="absolute inset-0">
+        {/* Fallback image while video loads */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1564473185935-58113cba1e80?q=80&w=2232&auto=format&fit=crop')`,
           }}
         />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+
+        {/* Video */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <source src="/videos/vedio.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark overlays for text readability */}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
       </div>
 
       {/* Content container */}
