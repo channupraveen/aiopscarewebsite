@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       {/* Full-bleed background */}
       <div className="absolute inset-0">
         <div
@@ -17,22 +17,22 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
       </div>
 
-      {/* Content container — with strict inline padding */}
+      {/* Content container */}
       <div
-        className="relative z-10 w-full h-full max-w-[1600px] mx-auto flex flex-col justify-center"
-        style={{ paddingLeft: '48px', paddingRight: '48px', paddingTop: '120px', paddingBottom: '60px' }}
+        className="relative z-10 w-full h-full max-w-[1600px] mx-auto flex flex-col justify-center min-h-screen"
+        style={{ paddingLeft: 'clamp(20px, 4vw, 48px)', paddingRight: 'clamp(20px, 4vw, 48px)', paddingTop: 'clamp(100px, 15vw, 120px)', paddingBottom: 'clamp(40px, 5vw, 60px)' }}
       >
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 h-full pt-20">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 h-full pt-0 md:pt-20">
           {/* Left — Large Typography */}
-          <div className="flex-1 max-w-[800px] flex flex-col justify-center">
+          <div className="flex-1 max-w-[800px] flex flex-col justify-center items-center text-center md:items-start md:text-left">
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-light leading-[1.05] tracking-[-0.025em] text-white mb-8"
+              className="font-light leading-[1.08] tracking-[-0.025em] text-white mb-6 md:mb-8"
               style={{
                 fontFamily: "'Georgia', 'Times New Roman', serif",
-                fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+                fontSize: 'clamp(2rem, 8vw, 5rem)',
               }}
             >
               The AI Platform
@@ -46,8 +46,8 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-white/65 leading-relaxed mb-8"
-              style={{ fontSize: '16px', maxWidth: '520px' }}
+              className="text-white/65 leading-relaxed mb-6 text-sm md:text-base"
+              style={{ maxWidth: '520px' }}
             >
               Leading hospitals trust AiOpsCare to automate complex
               operational tasks so their teams can focus on outcomes, not obstacles.
@@ -57,19 +57,20 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
+              style={{ marginTop: '16px' }}
             >
               <a
                 href="#demo"
-                className="inline-flex items-center gap-3 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-medium tracking-[0.15em] uppercase transition-all duration-300"
-                style={{ fontSize: '13px', padding: '16px 28px' }}
+                className="inline-flex items-center gap-3 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-medium tracking-[0.15em] uppercase transition-all duration-300 text-[12px] md:text-[13px]"
+                style={{ padding: '14px 24px' }}
               >
                 Request a Demo
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <span className="text-[15px] font-light">&gt;</span>
               </a>
             </motion.div>
           </div>
 
-          {/* Right — Glass Card */}
+          {/* Right — Glass Card — hidden on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

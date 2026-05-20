@@ -52,36 +52,39 @@ export default function TrustSection() {
     <section className="relative bg-black overflow-hidden">
       <div
         className="max-w-[1600px] mx-auto"
-        style={{ paddingLeft: '48px', paddingRight: '48px', paddingTop: '140px', paddingBottom: '140px' }}
+        style={{ paddingLeft: 'clamp(20px, 4vw, 48px)', paddingRight: 'clamp(20px, 4vw, 48px)', paddingTop: 'clamp(80px, 12vw, 140px)', paddingBottom: 'clamp(80px, 12vw, 140px)' }}
       >
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left — Big serif headline */}
           <Reveal>
             <h2
               className="text-white font-light leading-[1.1] tracking-[-0.02em]"
               style={{
                 fontFamily: "'Georgia', 'Times New Roman', serif",
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                fontSize: 'clamp(1.75rem, 4vw, 3.5rem)',
               }}
             >
               We turn your operational chaos into automated intelligence, with accuracy you can trust, and compliance you can prove.
             </h2>
           </Reveal>
 
-          {/* Right — 2x2 stats grid */}
-          <div className="grid grid-cols-2 gap-px bg-white/10 rounded-lg overflow-hidden border border-white/10">
+          {/* Right — stats grid: single column on mobile, 2x2 on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 rounded-lg overflow-hidden border border-white/10">
             {STATS.map((stat, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div
-                  className="bg-black flex flex-col gap-6"
-                  style={{ padding: '40px', minHeight: '220px' }}
+                  className="bg-black flex flex-col items-center text-center md:items-start md:text-left gap-4 md:gap-6 p-8 md:p-10"
+                  style={{ minHeight: 'clamp(180px, 20vw, 220px)' }}
                 >
                   <div>{stat.icon}</div>
                   <div>
-                    <div className="text-white font-light mb-2" style={{ fontSize: '32px', fontFamily: "'Georgia', serif" }}>
+                    <div
+                      className="text-white font-light mb-1 md:mb-2"
+                      style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontFamily: "'Georgia', serif" }}
+                    >
                       {stat.value}
                     </div>
-                    <div className="text-white/55" style={{ fontSize: '14px' }}>
+                    <div className="text-white/55 text-sm">
                       {stat.label}
                     </div>
                   </div>
@@ -95,9 +98,9 @@ export default function TrustSection() {
       {/* Operating Reality section */}
       <div
         className="max-w-[1600px] mx-auto border-t border-white/10"
-        style={{ paddingLeft: '48px', paddingRight: '48px', paddingTop: '140px', paddingBottom: '140px' }}
+        style={{ paddingLeft: 'clamp(20px, 4vw, 48px)', paddingRight: 'clamp(20px, 4vw, 48px)', paddingTop: 'clamp(80px, 12vw, 140px)', paddingBottom: 'clamp(80px, 12vw, 140px)' }}
       >
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-20">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           {/* Left — Small label */}
           <Reveal>
             <div className="flex items-start gap-3">
@@ -119,10 +122,10 @@ export default function TrustSection() {
           <div>
             <Reveal>
               <h3
-                className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-12"
+                className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-8 md:mb-12"
                 style={{
                   fontFamily: "'Georgia', 'Times New Roman', serif",
-                  fontSize: 'clamp(1.75rem, 3.2vw, 2.75rem)',
+                  fontSize: 'clamp(1.5rem, 3.2vw, 2.75rem)',
                 }}
               >
                 Healthcare operations have always depended on people to bridge the gaps that technology couldn&apos;t.
@@ -131,14 +134,12 @@ export default function TrustSection() {
 
             <Reveal delay={0.2}>
               <p
-                className="text-white/60 leading-[1.5] mb-6 max-w-[600px]"
-                style={{ fontSize: '17px' }}
+                className="text-white/60 leading-[1.5] mb-6 max-w-[600px] text-sm md:text-base"
               >
                 Unstructured documents. Fragmented data. Disconnected systems.
               </p>
               <p
-                className="text-white/60 leading-[1.6] max-w-[600px]"
-                style={{ fontSize: '17px' }}
+                className="text-white/60 leading-[1.6] max-w-[600px] text-sm md:text-base"
               >
                 AiOpsCare structures the chaos, automates the manual handoffs, and deploys end-to-end workflows across every system, providing the integrated intelligence layer to improve processes over time.
               </p>

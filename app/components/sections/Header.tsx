@@ -58,6 +58,7 @@ const NAV_LINKS = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
 
   const activeLink = NAV_LINKS.find((l) => l.label === hoveredItem);
 
@@ -70,23 +71,42 @@ export default function Header() {
         onMouseLeave={() => setHoveredItem(null)}
         className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10"
       >
-        {/* Top bar — full width edge-to-edge like Luminai */}
-        <div className="flex items-center justify-between gap-6" style={{ minHeight: '85px', paddingLeft: '48px', paddingRight: '48px' }}>
+        {/* Top bar */}
+        <div id="header-bar" className="flex items-center justify-between gap-4 md:gap-6" style={{ minHeight: '65px', paddingLeft: '20px', paddingRight: '20px' }}>
+          {/* Mobile Hamburger — LEFT side on mobile */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-[60]"
+          >
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-1" : ""}`} />
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-1" : ""}`} />
+          </button>
+
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5 z-10 shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue to-cyan flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <a href="/" className="flex items-center gap-2.5 z-[60] shrink-0 md:mr-0 mr-auto">
+            <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-blue to-cyan flex items-center justify-center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
                 <path d="M2 17l10 5 10-5" />
                 <path d="M2 12l10 5 10-5" />
               </svg>
             </div>
-            <span className="text-lg font-semibold tracking-tight text-white">
+            <span className="text-base md:text-lg font-semibold tracking-tight text-white">
               AiOps<span className="text-blue">Care</span>
             </span>
           </a>
 
-          {/* Center Nav */}
+          {/* Mobile right — CONTACT US button */}
+          <a
+            href="#demo"
+            className="md:hidden text-[11px] text-white tracking-[0.1em] font-medium border border-white/40 z-[60] shrink-0"
+            style={{ padding: '8px 14px' }}
+          >
+            CONTACT US
+          </a>
+
+          {/* Center Nav — desktop only */}
           <nav className="hidden md:flex items-center gap-9 flex-1 justify-center">
             {NAV_LINKS.map((link) => (
               <div
@@ -112,7 +132,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Right CTA */}
+          {/* Right CTA — desktop only */}
           <a
             href="#demo"
             className="hidden md:inline-flex items-center gap-3 text-[13px] text-white tracking-[0.15em] font-medium border border-white/40 hover:border-white/70 hover:bg-white/5 transition-all duration-300 shrink-0"
@@ -121,19 +141,10 @@ export default function Header() {
             REQUEST A DEMO
             <span className="text-[15px] font-light ml-1">&gt;</span>
           </a>
-
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-10"
-          >
-            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-1" : ""}`} />
-            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-1" : ""}`} />
-          </button>
         </div>
 
-        {/* MEGA MENU DROPDOWN */}
+
+        {/* MEGA MENU DROPDOWN — desktop only */}
         <AnimatePresence>
           {activeLink && activeLink.submenu && (
             <motion.div
@@ -141,7 +152,7 @@ export default function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden border-t border-white/10 bg-black"
+              className="overflow-hidden border-t border-white/10 bg-black hidden md:block"
             >
               <div className="max-w-[1600px] mx-auto grid grid-cols-[1fr_2fr] gap-10" style={{ paddingTop: '40px', paddingBottom: '40px', paddingLeft: '48px', paddingRight: '48px' }}>
                 <div>
@@ -191,33 +202,111 @@ export default function Header() {
         </AnimatePresence>
       </motion.header>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav — Luminai style fullscreen */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-black flex flex-col md:hidden"
           >
-            <nav className="flex flex-col gap-6 pb-10">
+            {/* Mobile nav header */}
+            <div className="flex items-center justify-between" style={{ minHeight: '65px', paddingLeft: '20px', paddingRight: '20px' }}>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="w-10 h-10 flex items-center justify-center"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6L6 18"/><path d="M6 6l12 12"/>
+                </svg>
+              </button>
+              <a href="/" className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue to-cyan flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <span className="text-base font-semibold tracking-tight text-white">
+                  AiOps<span className="text-blue">Care</span>
+                </span>
+              </a>
+              <div className="w-10" />
+            </div>
+
+            {/* Spacer + Links */}
+            <nav className="flex-1 flex flex-col justify-center px-6 gap-1">
+              <a
+                href="/"
+                onClick={() => setMobileOpen(false)}
+                className="text-[32px] font-light text-white tracking-tight py-2"
+                style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+              >
+                Home
+              </a>
               {NAV_LINKS.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-2xl font-light text-white/80 hover:text-white transition-colors tracking-wide"
-                >
-                  {link.label}
-                </a>
+                <div key={link.label}>
+                  <button
+                    onClick={() => setExpandedMobile(expandedMobile === link.label ? null : link.label)}
+                    className="w-full flex items-center justify-between py-2"
+                  >
+                    <span
+                      className="text-[32px] font-light text-white tracking-tight"
+                      style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+                    >
+                      {link.displayLabel}
+                    </span>
+                    {link.submenu && (
+                      <svg
+                        width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                        className={`transition-transform duration-300 ${expandedMobile === link.label ? "rotate-180" : ""}`}
+                      >
+                        <path d="M6 9l6 6 6-6"/>
+                      </svg>
+                    )}
+                  </button>
+                  <AnimatePresence>
+                    {expandedMobile === link.label && link.submenu && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden pl-4"
+                      >
+                        {link.submenu.map((sub) => (
+                          <a
+                            key={sub.label}
+                            href={sub.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="block text-white/60 text-lg py-2 hover:text-white transition-colors"
+                          >
+                            {sub.label}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
-              <div className="pt-6 border-t border-white/10">
-                <a href="#demo" onClick={() => setMobileOpen(false)} className="inline-flex items-center gap-2 text-sm text-white tracking-[0.12em] border border-white/30 px-6 py-3">
-                  REQUEST A DEMO
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-              </div>
             </nav>
+
+            {/* Bottom CTA — blue full-width like Luminai */}
+            <div className="px-6 pb-8">
+              <a
+                href="#demo"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-3 w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-medium tracking-[0.15em] uppercase text-[13px] transition-all duration-300"
+                style={{ padding: '18px 24px' }}
+              >
+                REQUEST A DEMO
+                <span className="text-[16px] font-light">&gt;</span>
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

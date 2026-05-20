@@ -150,3 +150,12 @@ body {
   pointer-events: none;
   z-index: 0;
 }
+
+/* Header desktop padding */
+@media (min-width: 768px) {
+  #header-bar {
+    padding-left: 48px !important;
+    padding-right: 48px !important;
+    min-height: 85px !important;
+  }
+}
