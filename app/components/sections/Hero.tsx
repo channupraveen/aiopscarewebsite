@@ -90,16 +90,6 @@ export default function Hero() {
               className="rounded-2xl overflow-hidden backdrop-blur-2xl bg-white/[0.07] border border-white/[0.08]"
               style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '40px', paddingBottom: '40px' }}
             >
-              <div className="flex justify-center mb-7">
-                <div className="w-14 h-14 rounded-2xl bg-[#2563eb] flex items-center justify-center shadow-[0_4px_30px_rgba(37,99,235,0.4)]">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                </div>
-              </div>
-
               <p
                 className="text-center text-white/85 leading-[1.4] tracking-[-0.01em] mb-8"
                 style={{
@@ -115,7 +105,7 @@ export default function Hero() {
                 hospital operations
               </p>
 
-              <div className="flex justify-center">
+              <div className="flex justify-center" style={{ marginTop: '36px' }}>
                 <a
                   href="#platform"
                   className="inline-flex items-center gap-2.5 text-white/60 hover:text-white tracking-[0.15em] uppercase border border-white/15 hover:border-white/30 rounded-full transition-all duration-300"
