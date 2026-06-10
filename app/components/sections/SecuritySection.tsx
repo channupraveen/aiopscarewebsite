@@ -6,7 +6,7 @@ const BADGES = [
   { label: "NABH Aligned" },
   { label: "HIPAA Grade" },
   { label: "SOC 2 Ready" },
-  { label: "ISO 27001" },
+  { label: "ISO 27001 Aligned" },
   { label: "Encrypted Data" },
   { label: "Role-Based Access" },
 ];

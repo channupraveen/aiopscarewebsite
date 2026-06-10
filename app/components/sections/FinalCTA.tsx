@@ -1,8 +1,36 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "../ui/Reveal";
 
+const CTA_IMAGES = [
+  {
+    src: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1200&auto=format&fit=crop",
+    alt: "Medical equipment maintenance and asset management",
+    label: "Asset & Maintenance Management",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=1200&auto=format&fit=crop",
+    alt: "Hospital housekeeping and infection control",
+    label: "Housekeeping & Infection Control",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
+    alt: "Operational dashboards and compliance reporting",
+    label: "Compliance & Analytics",
+  },
+];
+
 export default function FinalCTA() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % CTA_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative bg-black overflow-hidden border-t border-white/10">
       <div
@@ -10,37 +38,63 @@ export default function FinalCTA() {
         style={{ paddingLeft: '48px', paddingRight: '48px', paddingTop: '160px', paddingBottom: '160px' }}
       >
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Illustration */}
+          {/* Left — Sliding images */}
           <Reveal>
-            <div className="relative w-full aspect-square max-w-[500px] mx-auto">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#2563eb]/20 via-[#06b6d4]/10 to-transparent blur-3xl" />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-                className="relative w-full h-full"
-              >
-                <svg viewBox="0 0 200 200" className="w-full h-full">
-                  <defs>
-                    <radialGradient id="logoGrad" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#2563eb" />
-                      <stop offset="100%" stopColor="#06b6d4" />
-                    </radialGradient>
-                  </defs>
-                  <circle cx="100" cy="100" r="80" fill="none" stroke="url(#logoGrad)" strokeWidth="0.5" opacity="0.3" />
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="url(#logoGrad)" strokeWidth="0.5" opacity="0.5" />
-                  <circle cx="100" cy="100" r="40" fill="none" stroke="url(#logoGrad)" strokeWidth="0.5" opacity="0.7" />
-                  <circle cx="100" cy="100" r="20" fill="url(#logoGrad)" opacity="0.9" />
-                </svg>
-              </motion.div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-2xl bg-[#2563eb] flex items-center justify-center shadow-[0_0_60px_rgba(37,99,235,0.5)]">
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                </div>
+            <div className="flex justify-center">
+            <div className="relative w-full max-w-[420px] overflow-hidden rounded-2xl" style={{ aspectRatio: '4 / 5' }}>
+              <AnimatePresence mode="sync">
+                <motion.img
+                  key={current}
+                  src={CTA_IMAGES[current].src}
+                  alt={CTA_IMAGES[current].alt}
+                  initial={{ opacity: 0, scale: 1.06 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1, ease: 'easeInOut' }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </AnimatePresence>
+              {/* Dark + blue grade so it blends into the black section */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.75) 100%), linear-gradient(135deg, rgba(37,99,235,0.25) 0%, transparent 60%)',
+                }}
+              />
+              <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none" />
+
+              {/* Module label */}
+              <div className="absolute left-0 right-0 flex justify-center" style={{ bottom: '44px' }}>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={current}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-white/90 tracking-[0.15em] uppercase font-medium"
+                    style={{ fontSize: '11px' }}
+                  >
+                    {CTA_IMAGES[current].label}
+                  </motion.span>
+                </AnimatePresence>
               </div>
+
+              {/* Dots */}
+              <div className="absolute left-0 right-0 flex items-center justify-center gap-2" style={{ bottom: '20px' }}>
+                {CTA_IMAGES.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                    aria-label={`Slide ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === current ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/70'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
             </div>
           </Reveal>
 

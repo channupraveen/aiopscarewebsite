@@ -9,8 +9,8 @@ const STATS = [
         <text x="14" y="16" fontSize="6" fill="#3b82f6">A</text>
       </svg>
     ),
-    value: "10 million +",
-    label: "Workflows Driven by AiOpsCare",
+    value: "10 modules",
+    label: "One Unified Operations Platform",
   },
   {
     icon: (
@@ -22,8 +22,8 @@ const STATS = [
         <circle cx="12" cy="12" r="3" />
       </svg>
     ),
-    value: "8 modules",
-    label: "Operational Modules Per Deployment",
+    value: "100%",
+    label: "Actions Logged in the Audit Trail",
   },
   {
     icon: (
@@ -32,8 +32,8 @@ const STATS = [
         <polyline points="12 6 12 12 16 14" />
       </svg>
     ),
-    value: "30 days",
-    label: "Average Time to Value",
+    value: "24/7",
+    label: "Real-Time Monitoring & Alerts",
   },
   {
     icon: (
@@ -42,8 +42,8 @@ const STATS = [
         <polyline points="17 6 23 6 23 12" />
       </svg>
     ),
-    value: "4.8x",
-    label: "ROI",
+    value: "NABH",
+    label: "Compliance-Ready Documentation",
   },
 ];
 

@@ -44,9 +44,8 @@ export default function Footer() {
             {/* Left — Compliance badges */}
             <div className="flex gap-3">
               <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex flex-col items-center justify-center">
-                <span className="text-white/90 font-bold leading-none" style={{ fontSize: '7px', letterSpacing: '0.1em' }}>AICPA</span>
-                <span className="text-white font-bold leading-none mt-1" style={{ fontSize: '12px' }}>SOC2</span>
-                <span className="text-white/70 font-medium leading-none mt-1" style={{ fontSize: '7px' }}>TYPE 2</span>
+                <span className="text-white font-bold leading-none" style={{ fontSize: '11px' }}>NABH</span>
+                <span className="text-white/70 font-medium leading-none mt-1" style={{ fontSize: '7px', letterSpacing: '0.08em' }}>ALIGNED</span>
               </div>
               <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -78,14 +77,18 @@ export default function Footer() {
 
             {/* Right — Nav links */}
             <nav className="flex flex-wrap items-center gap-7 justify-end">
-              {['PLATFORM', 'SECURITY', 'TERMS', 'CAREERS', 'ABOUT', 'BLOG'].map(link => (
+              {[
+                { label: 'PLATFORM', href: '#platform' },
+                { label: 'SECURITY', href: '#compliance' },
+                { label: 'ABOUT', href: '#about' },
+              ].map(link => (
                 <a
-                  key={link}
-                  href="#"
+                  key={link.label}
+                  href={link.href}
                   className="text-white hover:text-white/70 transition-colors tracking-[0.12em] font-medium"
                   style={{ fontSize: '13px' }}
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </nav>
@@ -96,9 +99,8 @@ export default function Footer() {
             {/* Compliance badges */}
             <div className="flex gap-3 justify-center">
               <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex flex-col items-center justify-center">
-                <span className="text-white/90 font-bold leading-none" style={{ fontSize: '6px', letterSpacing: '0.1em' }}>AICPA</span>
-                <span className="text-white font-bold leading-none mt-0.5" style={{ fontSize: '11px' }}>SOC2</span>
-                <span className="text-white/70 font-medium leading-none mt-0.5" style={{ fontSize: '6px' }}>TYPE 2</span>
+                <span className="text-white font-bold leading-none" style={{ fontSize: '10px' }}>NABH</span>
+                <span className="text-white/70 font-medium leading-none mt-0.5" style={{ fontSize: '6px', letterSpacing: '0.08em' }}>ALIGNED</span>
               </div>
               <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -130,14 +132,18 @@ export default function Footer() {
 
             {/* Nav links — stacked centered */}
             <nav className="flex flex-col items-center gap-5 pt-4">
-              {['PLATFORM', 'SECURITY', 'TERMS', 'CAREERS', 'ABOUT', 'BLOG'].map(link => (
+              {[
+                { label: 'PLATFORM', href: '#platform' },
+                { label: 'SECURITY', href: '#compliance' },
+                { label: 'ABOUT', href: '#about' },
+              ].map(link => (
                 <a
-                  key={link}
-                  href="#"
+                  key={link.label}
+                  href={link.href}
                   className="text-white hover:text-white/70 transition-colors tracking-[0.12em] font-medium"
                   style={{ fontSize: '13px' }}
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </nav>
@@ -145,7 +151,8 @@ export default function Footer() {
 
           {/* Bottom copyright */}
           <div
-            className="mt-12 pt-6 border-t border-white/20 flex flex-col items-center md:flex-row md:justify-between gap-4"
+            className="border-t border-white/20 flex flex-col items-center md:flex-row md:justify-between gap-4"
+            style={{ marginTop: '56px', paddingTop: '28px' }}
           >
             <span className="text-white/60" style={{ fontSize: '12px' }}>
               © {new Date().getFullYear()} AiOpsCare. All rights reserved.

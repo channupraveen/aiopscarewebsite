@@ -4,15 +4,15 @@ import Reveal from "../ui/Reveal";
 import SectionLabel from "../ui/SectionLabel";
 
 const MODULES = [
-  { icon: "📦", name: "Asset Management", desc: "Full lifecycle tracking from procurement to decommission with health scoring and predictive alerts.", stat: "2,400+ assets" },
-  { icon: "🎫", name: "Maintenance Tickets", desc: "AI-powered ticket routing, SLA enforcement, technician dispatch, and resolution tracking.", stat: "127 active" },
-  { icon: "🧹", name: "Housekeeping", desc: "Real-time room status, cleaning workflows, discharge triggers, and hygiene compliance.", stat: "98% turnover" },
-  { icon: "👔", name: "Laundry Lifecycle", desc: "RFID-tracked linen flow — collection, washing, QC, distribution — with loss analytics.", stat: "< 2% loss" },
+  { icon: "📦", name: "Asset Management", desc: "Full lifecycle tracking from procurement to decommission with health scoring and predictive alerts.", stat: "Full lifecycle" },
+  { icon: "🎫", name: "Maintenance Tickets", desc: "AI-powered ticket routing, SLA enforcement, technician dispatch, and resolution tracking.", stat: "SLA-driven" },
+  { icon: "🧹", name: "Housekeeping", desc: "Real-time room status, cleaning workflows, discharge triggers, and hygiene compliance.", stat: "Real-time status" },
+  { icon: "👔", name: "Laundry Lifecycle", desc: "RFID-tracked linen flow — collection, washing, QC, distribution — with loss analytics.", stat: "RFID tracked" },
   { icon: "🛡️", name: "Compliance Engine", desc: "Continuous NABH monitoring, automated audit trails, gap analysis, and inspection readiness.", stat: "NABH-ready" },
-  { icon: "✅", name: "Checklist System", desc: "Digital checklists with photo capture, e-signatures, geofencing, and schedule enforcement.", stat: "340 daily" },
+  { icon: "✅", name: "Checklist System", desc: "Digital checklists with photo capture, e-signatures, geofencing, and schedule enforcement.", stat: "Photo + e-sign" },
   { icon: "📋", name: "Audit Tracking", desc: "Consolidated records across all modules. Generate inspection reports with one click.", stat: "Auto-reports" },
   { icon: "⚡", name: "Utility Monitoring", desc: "Energy, water, gas tracking with anomaly detection and department-level breakdowns.", stat: "24/7 live" },
-  { icon: "📜", name: "Certification Tracking", desc: "Equipment calibration schedules, safety certifications, and renewal alerts.", stat: "Zero lapses" },
+  { icon: "📜", name: "Certification Tracking", desc: "Equipment calibration schedules, safety certifications, and renewal alerts.", stat: "Renewal alerts" },
   { icon: "📊", name: "Operational Dashboards", desc: "Real-time KPIs, department analytics, trend visualization, and executive summaries.", stat: "Live data" },
 ];
 

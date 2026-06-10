@@ -24,16 +24,6 @@ const NAV_LINKS = [
     ],
   },
   {
-    label: "CAREERS",
-    displayLabel: "Careers",
-    href: "#",
-    submenu: [
-      { label: "Open Positions", href: "#" },
-      { label: "Life at AiOpsCare", href: "#" },
-      { label: "Engineering Team", href: "#" },
-    ],
-  },
-  {
     label: "ABOUT",
     displayLabel: "About",
     href: "#about",
@@ -41,16 +31,6 @@ const NAV_LINKS = [
       { label: "Our Mission", href: "#about" },
       { label: "Leadership", href: "#about" },
       { label: "Investors & Partners", href: "#about" },
-    ],
-  },
-  {
-    label: "BLOG",
-    displayLabel: "Blog",
-    href: "#",
-    submenu: [
-      { label: "Latest Articles", href: "#" },
-      { label: "Case Studies", href: "#" },
-      { label: "Product Updates", href: "#" },
     ],
   },
 ];
@@ -85,13 +65,6 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="flex items-center gap-2.5 z-[60] shrink-0 md:mr-0 mr-auto">
-            <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-blue to-cyan flex items-center justify-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5" />
-                <path d="M2 12l10 5 10-5" />
-              </svg>
-            </div>
             <span className="text-base md:text-lg font-semibold tracking-tight text-white">
               AiOps<span className="text-blue">Care</span>
             </span>
@@ -224,13 +197,6 @@ export default function Header() {
                 </svg>
               </button>
               <a href="/" className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue to-cyan flex items-center justify-center">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                </div>
                 <span className="text-base font-semibold tracking-tight text-white">
                   AiOps<span className="text-blue">Care</span>
                 </span>
