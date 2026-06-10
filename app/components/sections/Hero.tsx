@@ -37,10 +37,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-light leading-[1.08] tracking-[-0.025em] text-white mb-6 md:mb-8"
+              className="font-light leading-[1.08] tracking-[-0.025em] text-white"
               style={{
                 fontFamily: "'Georgia', 'Times New Roman', serif",
                 fontSize: 'clamp(2rem, 8vw, 5rem)',
+                marginBottom: '32px',
               }}
             >
               The AI Platform
@@ -65,7 +66,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              style={{ marginTop: '16px' }}
+              style={{ marginTop: '48px' }}
             >
               <a
                 href="#demo"
