@@ -5,6 +5,7 @@ import TrustSection from "./components/sections/TrustSection";
 import UseCasesMarquee from "./components/sections/UseCasesMarquee";
 import OperatingReality from "./components/sections/OperatingReality";
 import SecuritySection from "./components/sections/SecuritySection";
+import DemoSection from "./components/sections/DemoSection";
 import FinalCTA from "./components/sections/FinalCTA";
 import Footer from "./components/sections/Footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <OperatingReality />
         <SecuritySection />
         <FinalCTA />
+        <DemoSection />
       </main>
       <Footer />
     </>

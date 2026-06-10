@@ -106,14 +106,22 @@ export default function Header() {
           </nav>
 
           {/* Right CTA — desktop only */}
-          <a
-            href="#demo"
-            className="hidden md:inline-flex items-center gap-3 text-[13px] text-white tracking-[0.15em] font-medium border border-white/40 hover:border-white/70 hover:bg-white/5 transition-all duration-300 shrink-0"
-            style={{ padding: '10px 20px' }}
-          >
-            REQUEST A DEMO
-            <span className="text-[15px] font-light ml-1">&gt;</span>
-          </a>
+          <div className="hidden md:flex items-center gap-6 shrink-0">
+            <a
+              href="https://admin.aiopscare.com/auth/login"
+              className="text-[13px] text-white/85 hover:text-white tracking-[0.1em] font-medium transition-colors duration-300"
+            >
+              LOGIN
+            </a>
+            <a
+              href="#demo"
+              className="inline-flex items-center gap-3 text-[13px] text-white tracking-[0.15em] font-medium border border-white/40 hover:border-white/70 hover:bg-white/5 transition-all duration-300"
+              style={{ padding: '10px 20px' }}
+            >
+              REQUEST A DEMO
+              <span className="text-[15px] font-light ml-1">&gt;</span>
+            </a>
+          </div>
         </div>
 
 
@@ -264,6 +272,13 @@ export default function Header() {
 
             {/* Bottom CTA — blue full-width like Luminai */}
             <div className="px-0" style={{ marginBottom: '40px' }}>
+              <a
+                href="https://admin.aiopscare.com/auth/login"
+                className="flex items-center justify-center w-full text-white/80 hover:text-white font-medium tracking-[0.15em] uppercase text-[13px] border border-white/25 transition-all duration-300"
+                style={{ padding: '16px 24px', marginBottom: '12px' }}
+              >
+                LOGIN
+              </a>
               <a
                 href="#demo"
                 onClick={() => setMobileOpen(false)}
